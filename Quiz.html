@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nigerian Government Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .question { margin-bottom: 20px; }
+    .options button { margin: 5px; }
+    .explanation { display: none; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Nigerian Government Quiz</h1>
+  <div id="quiz"></div>
+
+  <script>
+    const questions = [
+      {q:"The Richards Constitution was introduced in", options:["1944","1946","1951","1954"], answer:1, explanation:"Introduced in 1946 to replace the Clifford Constitution."},
+      {q:"The Macpherson Constitution came into effect in", options:["1946","1948","1951","1953"], answer:2, explanation:"Came into effect in 1951, expanding regional autonomy."},
+      {q:"The Lyttleton Constitution of 1954 is significant for", options:["Introducing federalism","Ending colonial rule","Establishing judiciary","Creating local governments"], answer:0, explanation:"It introduced federalism in Nigeria."},
+      {q:"Nigeria became a republic in", options:["1957","1960","1963","1966"], answer:2, explanation:"Nigeria became a republic in 1963."},
+      {q:"The first military coup in Nigeria occurred in", options:["1960","1963","1966","1975"], answer:2, explanation:"The first coup occurred in January 1966."},
+      {q:"The Nigerian Civil War ended in", options:["1968","1969","1970","1971"], answer:2, explanation:"The war ended in January 1970."},
+      {q:"The 1979 Constitution introduced", options:["Parliamentary system","Presidential system","Military system","Confederal system"], answer:1, explanation:"It introduced the presidential system."},
+      {q:"The Babangida transition programme was terminated in", options:["1991","1992","1993","1994"], answer:2, explanation:"Terminated in 1993 after annulment of June 12 election."},
+      {q:"The annulment of June 12 election occurred in", options:["1992","1993","1994","1995"], answer:1, explanation:"The June 12 election was annulled in 1993."},
+      {q:"Nigeria returned to civilian rule in", options:["1998","1999","2000","2001"], answer:1, explanation:"Civilian rule returned in May 1999."},
+      {q:"The Aburi Accord was held in", options:["Nigeria","Ghana","UK","USA"], answer:1, explanation:"Held in Aburi, Ghana in 1967."},
+      {q:"State creation under General Murtala Mohammed occurred in", options:["1967","1975","1976","1979"], answer:2, explanation:"Seven new states were created in 1976."},
+      {q:"The Director-General of a ministry is primarily responsible for", options:["Political decisions","Administrative execution","Judicial rulings","Legislative duties"], answer:1, explanation:"DG handles administrative execution."},
+      {q:"In Nigeria, a Director-General is usually", options:["Elected","Appointed civil servant","Military officer","Judge"], answer:1, explanation:"DGs are appointed career civil servants."},
+      {q:"The Secretary to the Government of the Federation (SGF) is responsible for", options:["Conducting elections","Coordinating government policies","Passing laws","Judging cases"], answer:1, explanation:"SGF coordinates government policies."},
+      {q:"The Head of Civil Service ensures", options:["Political neutrality","Military control","Party supremacy","Judicial review"], answer:0, explanation:"Head of Civil Service ensures neutrality."},
+      {q:"Permanent Secretaries are", options:["Political appointees","Career civil servants","Judges","Legislators"], answer:1, explanation:"They are career civil servants."},
+      {q:"The Federal Executive Council is chaired by", options:["Senate President","President","Chief Justice","SGF"], answer:1, explanation:"The President chairs the FEC."},
+      {q:"INEC was established in its present form in", options:["1987","1998","1999","2003"], answer:2, explanation:"INEC was established in 1999."},
+      {q:"The Chairman of INEC is appointed by", options:["Senate","President (subject to confirmation)","Judiciary","Political parties"], answer:1, explanation:"Appointed by the President, confirmed by Senate."},
+      {q:"A public corporation differs from a ministry because it", options:["Is profit-oriented","Has operational autonomy","Makes laws","Conducts elections"], answer:1, explanation:"Public corporations have operational autonomy."},
+      {q:"Bureaucracy is best characterized by", options:["Flexibility","Hierarchy and rules","Military control","Political bias"], answer:1, explanation:"Defined by hierarchy and rules."},
+      {q:"Nigeria joined the United Nations in", options:["1957","1960","1963","1966"], answer:1, explanation:"Joined UN in 1960 after independence."},
+      {q:"ECOWAS was established in", options:["1973","1975","1977","1980"], answer:1, explanation:"Established in 1975."},
+      {q:"The headquarters of ECOWAS is in", options:["Accra","Lagos","Abuja","Dakar"], answer:3, explanation:"Located in Abuja today, but originally in Lagos; official HQ is Abuja."},
+      {q:"The OAU was transformed into AU in", options:["1999","2001","2002","2005"], answer:2, explanation:"OAU became AU in 2002."},
+      {q:"Non-alignment means", options:["Supporting both blocs","Remaining neutral in global conflicts","Military alliance","Economic dependence"], answer:1, explanation:"It means neutrality in global conflicts."},
+      {q:"Nigeria’s foreign policy is primarily guided by", options:["Africa as centrepiece","Europe first","Asia focus","Military alliances"], answer:0, explanation:"Africa is the centrepiece of Nigeria’s foreign policy."},
+      {q:"The Commonwealth is made up of", options:["Former British colonies","African countries only","Military states","Socialist states"], answer:0, explanation:"It is composed of former British colonies."},
+      {q:"Diplomatic immunity is based on", options:["Military power","International law","National law","Religion"], answer:1, explanation:"It is based on international law."},
+      {q:"Sovereignty in modern states is limited by", options:["Military","International organizations","Culture","Religion"], answer:1, explanation:"International organizations limit sovereignty."},
+      {q:"A confederation differs from a federation because", options:["Central government is stronger","Member states retain more power","No constitution exists","Judiciary dominates"], answer:1, explanation:"In a confederation, member states retain more power."},
+      {q:"Political socialization involves", options:["Law making","Learning political values","Voting only","Military training"], answer:1, explanation:"It is the process of learning political values."},
+      {q:"Franchise refers to", options:["Right to rule","Right to vote","Right to protest","Right to govern"], answer:1, explanation:"Franchise means the right to vote."},
+      {q:"Proportional representation ensures", options:["Majority dominance","Fair representation of parties","Military control","Executive dominance"], answer:1, explanation:"It ensures fair representation of parties."},
+      {q:"A pressure group differs from a political party because it", options:["Seeks power directly","Does not contest elections","Makes laws","Controls government"], answer:1, explanation:"Pressure groups do not contest elections."},
+      {q:"Delegated legislation is necessary due to", options:["Executive weakness","Legislative workload","Judicial review","Political parties"], answer:1, explanation:"It helps manage legislative workload."},
+      {q:"Checks and balances are designed to", options:["Promote dictatorship","Prevent abuse of power","Strengthen one arm","Eliminate opposition"], answer:1, explanation:"They prevent abuse of power."},
+      {q:"An ombudsman is responsible for", options:["Law making","Investigating complaints against officials","Conducting elections","Military control"], answer:1, explanation:"Investigates complaints against officials."},
+      {q:"Public opinion is best influenced by", options:["Judiciary","Mass media","Military","Civil service"], answer:1, explanation:"Mass media influences public opinion."}
+    ];
+
+    const quizDiv = document.getElementById("quiz");
+
+    questions.forEach((qObj, index) => {
+      const qDiv = document.createElement("div");
+      qDiv.className = "question";
+      qDiv.innerHTML = `<strong>${index+1}. ${qObj.q}</strong>`;
+      
+      const optDiv = document.createElement("div");
+      optDiv.className = "options";
+      
+      qObj.options.forEach((opt, i)
